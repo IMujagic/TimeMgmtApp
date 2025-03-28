@@ -1,0 +1,12 @@
+# Project Guidelines
+
+## Documentation Requirements
+
+-   Update relevant documentation in /docs when modifying features
+-   Keep README.md in sync with new capabilities
+
+## Technical requirements
+
+- Use Angular for web app
+- App doesn't have any backend, it stores data locally in browser storage
+- Use Bootstrap CSS Framework

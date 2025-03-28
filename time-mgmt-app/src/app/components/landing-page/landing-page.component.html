@@ -1,0 +1,92 @@
+<div class="container-fluid terminal-container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 class="terminal-title">{{ 'app.title' | translate }}</h1>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>{{ 'landing.current_date' | translate }}</span>
+                </div>
+                <div class="terminal-content">
+                    <span class="terminal-text">{{ currentDate | date:'fullDate' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>{{ 'landing.current_time' | translate }}</span>
+                </div>
+                <div class="terminal-content">
+                    <span class="terminal-text">{{ currentDate | date:'HH:mm:ss' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>{{ 'app.title' | translate }}</span>
+                </div>
+                <div class="terminal-content">
+                    <div *ngIf="currentDay">
+                        <!-- Show action buttons based on next available action -->
+                        <div *ngIf="nextAction !== null" class="d-grid gap-3">
+                            <button *ngIf="nextAction === EntryType.START" 
+                                    class="btn btn-success terminal-btn" 
+                                    (click)="performAction(EntryType.START)">
+                                {{ 'landing.start_work' | translate }}
+                            </button>
+                            
+                            <button *ngIf="nextAction === EntryType.BREAK_START" 
+                                    class="btn btn-warning terminal-btn" 
+                                    (click)="performAction(EntryType.BREAK_START)">
+                                {{ 'landing.start_break' | translate }}
+                            </button>
+                            
+                            <button *ngIf="nextAction === EntryType.BREAK_END" 
+                                    class="btn btn-info terminal-btn" 
+                                    (click)="performAction(EntryType.BREAK_END)">
+                                {{ 'landing.end_break' | translate }}
+                            </button>
+                            
+                            <button *ngIf="nextAction === EntryType.FINISH" 
+                                    class="btn btn-danger terminal-btn" 
+                                    (click)="performAction(EntryType.FINISH)">
+                                {{ 'landing.finish_work' | translate }}
+                            </button>
+                        </div>
+                        
+                        <!-- Show day finished message if no actions available -->
+                        <div *ngIf="nextAction === null" class="text-center">
+                            <p class="terminal-text">{{ 'landing.day_finished' | translate }}</p>
+                            <p class="terminal-text">
+                                {{ 'landing.total_hours' | translate:{ hours: formatHours(currentDay.totalHours) } }}
+                            </p>
+                        </div>
+                        
+                        <!-- Show error message if day has error -->
+                        <div *ngIf="currentDay.hasError" class="alert alert-danger mt-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            {{ 'details.error' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary terminal-btn" (click)="viewDetails()">
+                {{ 'landing.view_details' | translate }}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Import Bootstrap
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Global terminal theme styles
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+// Override default focus styles
+*:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 0, 0.25) !important;
+}
+
+// Custom scrollbar for terminal feel
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00cc00;
+}
+
+// Utility classes
+.cursor-pointer {
+    cursor: pointer;
+}
+
+// Animation for terminal typing effect
+.typing-animation {
+    overflow: hidden;
+    border-right: 0.15em solid #00ff00;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff00 }
+}

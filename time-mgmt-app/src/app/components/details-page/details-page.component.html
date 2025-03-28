@@ -1,0 +1,117 @@
+<div class="container-fluid terminal-container">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h1 class="terminal-title">{{ 'details.title' | translate }}</h1>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>{{ 'details.title' | translate }}</span>
+                </div>
+                <div class="terminal-content">
+                    <div *ngIf="workDays.length > 0; else noData">
+                        <div class="table-responsive">
+                            <table class="table table-dark terminal-table">
+                                <thead>
+                                    <tr>
+                                        <th>{{ 'details.date' | translate }}</th>
+                                        <th>{{ 'details.hours' | translate }}</th>
+                                        <th>{{ 'details.status' | translate }}</th>
+                                        <th>{{ 'details.actions' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let day of workDays" [ngClass]="{'error-row': day.hasError}">
+                                        <td>{{ day.date | date:'shortDate' }}</td>
+                                        <td>{{ formatHours(day.totalHours) }}</td>
+                                        <td>
+                                            <span *ngIf="day.hasError" class="badge bg-danger">
+                                                {{ 'details.error' | translate }}
+                                            </span>
+                                            <span *ngIf="!day.hasError" class="badge bg-success">
+                                                {{ 'details.completed' | translate }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button *ngIf="day.hasError" 
+                                                    class="btn btn-warning btn-sm terminal-btn-sm"
+                                                    (click)="openErrorModal(day)">
+                                                {{ 'app.edit' | translate }}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <ng-template #noData>
+                        <div class="text-center">
+                            <p class="terminal-text">{{ 'details.no_data' | translate }}</p>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary terminal-btn" (click)="goBack()">
+                {{ 'details.back' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Error Correction Modal -->
+<div *ngIf="showErrorModal && selectedDay" class="modal-backdrop show"></div>
+<div *ngIf="showErrorModal && selectedDay" class="modal show d-block" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content terminal-modal">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ 'error.title' | translate }}</h5>
+                <button type="button" class="btn-close" (click)="closeErrorModal()"></button>
+            </div>
+            <div class="modal-body">
+                <p class="terminal-text">{{ formatDate(selectedDay.date) }}</p>
+                
+                <div class="mb-3">
+                    <label for="finishTime" class="form-label">{{ 'error.finish_time' | translate }}</label>
+                    <input type="datetime-local" class="form-control terminal-input" id="finishTime"
+                           [(ngModel)]="manualFinishTime">
+                </div>
+                
+                <hr class="terminal-hr">
+                
+                <h6>{{ 'error.add_break' | translate }}</h6>
+                
+                <div class="mb-3">
+                    <label for="breakStart" class="form-label">{{ 'error.break_start' | translate }}</label>
+                    <input type="datetime-local" class="form-control terminal-input" id="breakStart"
+                           [(ngModel)]="manualBreakStart">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="breakEnd" class="form-label">{{ 'error.break_end' | translate }}</label>
+                    <input type="datetime-local" class="form-control terminal-input" id="breakEnd"
+                           [(ngModel)]="manualBreakEnd">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary terminal-btn" (click)="closeErrorModal()">
+                    {{ 'app.cancel' | translate }}
+                </button>
+                <button type="button" class="btn btn-success terminal-btn" (click)="saveManualFinish()">
+                    {{ 'error.fix_day' | translate }}
+                </button>
+                <button type="button" class="btn btn-info terminal-btn" (click)="saveManualBreak()">
+                    {{ 'error.add_break' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

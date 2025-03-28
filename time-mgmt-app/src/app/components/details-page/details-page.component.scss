@@ -1,0 +1,165 @@
+// Terminal-inspired dark theme styles
+.terminal-container {
+    padding: 20px;
+    background-color: #1e1e1e;
+    min-height: 100vh;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 5px #00ff00;
+    letter-spacing: 2px;
+}
+
+.terminal-box {
+    background-color: #000000;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.terminal-header {
+    background-color: #00ff00;
+    color: #000000;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.terminal-content {
+    padding: 15px;
+}
+
+.terminal-text {
+    font-size: 1.2rem;
+    color: #00ff00;
+}
+
+.terminal-btn {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    transition: all 0.3s;
+    
+    &:hover {
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+        transform: translateY(-2px);
+    }
+    
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.terminal-btn-sm {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}
+
+// Terminal table styling
+.terminal-table {
+    color: #00ff00;
+    border-color: #00ff00;
+    
+    thead {
+        border-bottom: 2px solid #00ff00;
+    }
+    
+    th, td {
+        border-color: #00aa00;
+    }
+    
+    tbody tr {
+        transition: all 0.3s;
+        
+        &:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+    }
+}
+
+// Error row highlighting
+.error-row {
+    background-color: rgba(255, 0, 0, 0.2);
+    
+    &:hover {
+        background-color: rgba(255, 0, 0, 0.3) !important;
+    }
+}
+
+// Modal styling
+.terminal-modal {
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    
+    .modal-header {
+        border-bottom: 1px solid #00ff00;
+        
+        .modal-title {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .btn-close {
+            color: #00ff00;
+            filter: invert(100%) sepia(100%) saturate(1000%) hue-rotate(100deg);
+        }
+    }
+    
+    .modal-body {
+        font-family: 'Courier New', monospace;
+    }
+    
+    .modal-footer {
+        border-top: 1px solid #00ff00;
+    }
+}
+
+// Form controls
+.terminal-input {
+    background-color: #000000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    font-family: 'Courier New', monospace;
+    
+    &:focus {
+        background-color: #000000;
+        color: #00ff00;
+        border-color: #00ff00;
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+}
+
+.form-label {
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-hr {
+    border-color: #00ff00;
+    opacity: 0.5;
+}
+
+// Badge styling
+.badge {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+.bg-danger {
+    background-color: #990000 !important;
+}
+
+.bg-success {
+    background-color: #006600 !important;
+}
